@@ -2,7 +2,7 @@ import axios from "axios";
 import e from "cors";
 import React, { useState } from "react";
 
-export default function Login() {
+export default function Login(props) {
   const [formValues, setFormValues] = useState({ username: "", password: "" });
   const [errorMessage, setErrorMessage] = useState("")
 
@@ -15,6 +15,7 @@ export default function Login() {
       axios.post('http://localhost:5000/api/login', formValues)
       .then(res => {
           localStorage.setItem('token', res.data.payload)
+          props.setIsLoggedIn(true)
       })
       .catch(err => {
           console.log(err.message)
