@@ -4,6 +4,7 @@ import React, { useState } from "react";
 
 export default function Login() {
   const [formValues, setFormValues] = useState({ username: "", password: "" });
+  const [errorMessage, setErrorMessage] = useState("")
 
   const onChange = (e) => {
       setFormValues({...formValues, [e.target.name]: e.target.value})
@@ -15,6 +16,10 @@ export default function Login() {
       .then(res => {
           localStorage.setItem('token', res.data.payload)
       })
+      .catch(err => {
+          console.log(err.message)
+          setErrorMessage(err.message)
+      })
   }
   return (
     <form onSubmit={handleLogin}>
@@ -24,6 +29,7 @@ export default function Login() {
           <input name="password" type="password" placeholder="password" value={formValues.password}  onChange={onChange}/>
         </label>
         <button>Login</button>
+        {errorMessage ? <p>{errorMessage}</p> : null}
       </label>
     </form>
   );
