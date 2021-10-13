@@ -40,7 +40,8 @@ function App(props) {
       //  axiosWithAuth()
       //  .post('/logout')
       .then((res) => {
-        console.log(res);
+        localStorage.removeItem("token");
+        setIsLoggedIn(false);
       })
       .catch((err) => {
         console.log(err);
@@ -49,9 +50,9 @@ function App(props) {
 
   return (
     <div className="App">
-      <NavLink to="/friends">Friends</NavLink>
       {isLoggedIn && (
         <>
+          <NavLink to="/friends">Friends</NavLink>
           <NavLink to="/addfriend">Add a Friend</NavLink>
           <NavLink onClick={handleLogout} to="/">
             Logout
