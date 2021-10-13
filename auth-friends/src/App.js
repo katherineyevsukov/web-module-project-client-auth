@@ -30,6 +30,8 @@ function App(props) {
   return (
     <div className="App">
       <NavLink to="/friends">Friends</NavLink>
+      <NavLink to='/addfriend'>Add a Friend</NavLink>
+      <NavLink to='/'>Logout</NavLink>
       <h1>SUP</h1>
 
       <Switch>
