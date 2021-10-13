@@ -1,14 +1,17 @@
 import axios from "axios";
-import e from "cors";
 import React, { useState } from "react";
 
+
 export default function Login(props) {
+  
   const [formValues, setFormValues] = useState({ username: "", password: "" });
   const [errorMessage, setErrorMessage] = useState("")
+
 
   const onChange = (e) => {
       setFormValues({...formValues, [e.target.name]: e.target.value})
   }
+
 
   const handleLogin = (e) => {
       e.preventDefault()
@@ -16,6 +19,7 @@ export default function Login(props) {
       .then(res => {
           localStorage.setItem('token', res.data.payload)
           props.setIsLoggedIn(true)
+          props.history.push('/friends')
       })
       .catch(err => {
           console.log(err.message)
