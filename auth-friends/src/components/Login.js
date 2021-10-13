@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 
 export default function Login(props) {
   
   const [formValues, setFormValues] = useState({ username: "", password: "" });
   const [errorMessage, setErrorMessage] = useState("")
-
+    const history = useHistory()
 
   const onChange = (e) => {
       setFormValues({...formValues, [e.target.name]: e.target.value})
@@ -19,7 +20,7 @@ export default function Login(props) {
       .then(res => {
           localStorage.setItem('token', res.data.payload)
           props.setIsLoggedIn(true)
-          props.history.push('/friends')
+          history.push('/friends')
       })
       .catch(err => {
           console.log(err.message)

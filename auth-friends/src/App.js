@@ -7,6 +7,7 @@ import axios from "axios";
 import FriendsList from "./components/FriendsList";
 import ProtectedRoute from "./components/ProtectedRoute";
 import axiosWithAuth from "./utils/axiosWithAuth";
+import AddFriend from "./components/AddFriend";
 
 function App(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("token"));
@@ -60,6 +61,11 @@ function App(props) {
       {isLoggedIn && <h1>SUP</h1>}
 
       <Switch>
+        <ProtectedRoute
+          path="/addfriend"
+          component={AddFriend}
+          setFriends={setFriends}
+        />
         <ProtectedRoute
           path="/friends"
           component={FriendsList}
