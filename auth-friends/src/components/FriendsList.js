@@ -9,7 +9,7 @@ export default function FriendsList(props){
     return(
         <div>
        { props.friends.map(fr => {
-          return <p>{fr.name}</p>
+          return <p key={fr.id}>{fr.name}</p>
 })}
         </div>
     )
